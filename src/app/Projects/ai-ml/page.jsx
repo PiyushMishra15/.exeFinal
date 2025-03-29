@@ -36,7 +36,7 @@ const projects = [
     title: "Sky Detector",
     description:
       "The SkyDetector is designed to revolutionize solar energy analysis in urban settings. It calculates the angle of elevation for optimal solar panel placement and promotes renewable energy adoption.",
-    techStack: ["React.js", "tailwind.css", "OpenCV", "Firebase"],
+    techStack: ["React.js", "Tailwind CSS", "OpenCV", "Firebase"],
     thumbnailUrl:
       "https://img.freepik.com/free-vector/drone-technology-design_24908-54824.jpg?w=740&t=st=1712547922~exp=1712548522~hmac=4555dfd4c520c6c45f43e5d07c6bb3b5aedcb015ce0d814547670c266191562f",
   },
@@ -75,11 +75,11 @@ const Projects = () => {
     if (typeof window !== "undefined") {
       setIsClient(true);
       AOS.init({
-        duration: 1000, // Default smooth animations
-        offset: 100, // Adjust the trigger point
-        easing: "ease-out-quint", // A smoother easing effect
-        once: false, // Animation occurs only once
-        delay: 100, // Add slight delay for each element for staggered effect
+        duration: 1000, // Smooth animations
+        offset: 100, // Trigger point adjustment
+        easing: "ease-out-quint",
+        once: false,
+        delay: 100, // Delay for staggered animations
       });
     }
   }, []);
@@ -95,11 +95,11 @@ const Projects = () => {
         autoPlay
         muted
         loop
-        style={{ filter: "brightness(0.5)" }} // Adjust brightness and scale for quality
-        playbackrate={0.75} // Slow down the video
+        style={{ filter: "brightness(0.5)" }}
+        playbackrate={0.75}
       />
 
-      <div className="container mx-auto py-16 px-6 relative z-10">
+      <div className="container mx-auto py-16 px-6">
         {/* Page Title */}
         <h1
           className="text-4xl sm:text-5xl md:text-7xl font-bold text-center mb-16 p-2 fontdiner-swanky-regular bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-blue-500 to-blue-700 animate-gradient animate-title leading-tight"
@@ -114,7 +114,6 @@ const Projects = () => {
             <span className="absolute bottom-0 left-0 w-16 h-1 bg-blue-400 mt-2"></span>
           </h2>
         </div>
-
         {projects.map((project, index) => (
           <div
             key={project.id}
@@ -126,23 +125,33 @@ const Projects = () => {
             <div
               data-aos="zoom-in"
               data-aos-anchor-placement="bottom-bottom"
-              className="w-full md:w-1/2"
+              className="w-full sm:w-2/3 md:w-1/3 md:mr-12 flex-shrink-0"
             >
-              <img
-                src={project.thumbnailUrl}
-                alt={project.title}
-                className="w-full h-auto rounded-lg shadow-lg"
-              />
+              <div className="rounded-xl shadow-lg overflow-hidden spotlight-card">
+                <img
+                  src={project.thumbnailUrl}
+                  alt={project.title}
+                  className="w-full h-64 object-cover"
+                />
+              </div>
             </div>
 
-            {/* Right: Content */}
-            <div className="w-full md:w-1/2">
-              <h3 className="text-3xl font-bold mb-4">{project.title}</h3>
+            {/* Right: Text Content */}
+            <div
+              data-aos="fade-up"
+              data-aos-anchor-placement="bottom-bottom"
+              className="w-full sm:w-2/3 md:w-2/3 text-left space-y-6"
+            >
+              <h2 className="text-2xl sm:text-3xl md:text-4xl p-2 font-extrabold font-poppins text-blue-300 bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-blue-500 to-blue-700 animate-gradient animate-title">
+                {project.title}
+              </h2>
+
               {/* Tech Stack */}
               <p className="text-lg sm:text-xl md:text-2xl text-gray-400">
                 <span className="font-semibold text-gray-200">Tech Stack:</span>{" "}
                 {project.techStack.join(", ")}
               </p>
+
               {/* Description */}
               <p className="text-lg sm:text-xl md:text-2xl">
                 {project.description}
